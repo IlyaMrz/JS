@@ -62,3 +62,4 @@ function whereAmI(username, location) {
         return "I am totally lost!";
     }
 }
+whereAmI = (username, location) => (username && location) ? "I am not lost" : "I am totally lost!"
