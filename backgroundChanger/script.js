@@ -14,6 +14,3 @@ color1.addEventListener("input", paint)
 
 // color2.addEventListener("input", paint)
 
-const obj = {
-    name: 'sally';
-}
