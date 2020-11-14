@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/js/test/robofr/static/css/main.d7f3e082.chunk.css",
+    "main.js": "/js/test/robofr/static/js/main.94ab25c5.chunk.js",
+    "main.js.map": "/js/test/robofr/static/js/main.94ab25c5.chunk.js.map",
+    "runtime-main.js": "/js/test/robofr/static/js/runtime-main.2ec319d4.js",
+    "runtime-main.js.map": "/js/test/robofr/static/js/runtime-main.2ec319d4.js.map",
+    "static/css/2.b97b5188.chunk.css": "/js/test/robofr/static/css/2.b97b5188.chunk.css",
+    "static/js/2.2eaa4b8e.chunk.js": "/js/test/robofr/static/js/2.2eaa4b8e.chunk.js",
+    "static/js/2.2eaa4b8e.chunk.js.map": "/js/test/robofr/static/js/2.2eaa4b8e.chunk.js.map",
+    "index.html": "/js/test/robofr/index.html",
+    "static/css/2.b97b5188.chunk.css.map": "/js/test/robofr/static/css/2.b97b5188.chunk.css.map",
+    "static/css/main.d7f3e082.chunk.css.map": "/js/test/robofr/static/css/main.d7f3e082.chunk.css.map",
+    "static/js/2.2eaa4b8e.chunk.js.LICENSE.txt": "/js/test/robofr/static/js/2.2eaa4b8e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ec319d4.js",
+    "static/css/2.b97b5188.chunk.css",
+    "static/js/2.2eaa4b8e.chunk.js",
+    "static/css/main.d7f3e082.chunk.css",
+    "static/js/main.94ab25c5.chunk.js"
+  ]
+}
