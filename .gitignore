@@ -2,3 +2,7 @@ test.js
 test2.js
 *.txt
 /node/node_modules/
+/test/simplefolio
+/test/robofr/node_modules/
+/test/robofr/build/
+/node/
