@@ -5,4 +5,5 @@ test2.js
 /test/simplefolio
 /test/robofr/node_modules/
 /test/robofr/build/
-/node/
+/node/node_modules/
+/node/1/node_modules/
