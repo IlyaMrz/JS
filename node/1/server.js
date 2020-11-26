@@ -1,18 +1,23 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use((req, res, next) => {
-    console.log('ueeee use foo')
-    next();
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.get('/profile', (req, res) => {
+    res.send('getting profile')
 })
 
 app.get('/', (req, res) => {
+    res.send('getting root')
+})
+app.post('/profile', (req, res) => {
+    console.log(req.body)
     const user = {
-        name: 'Sally',
-        hobby: 'bein happy'
+        name: 'tom'
     }
-    res.send(user)
+    res.send(req.body)
 })
 
 app.listen(3000);
