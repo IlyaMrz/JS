@@ -10,7 +10,11 @@ app.get('/profile', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.send('getting root')
+    res.status(404).send('not found')
+    // req.body
+    // console.log(req.query) // localhost:3000/?name=bob&age=70 -> { name: 'bob', age: '70' }
+    // req.header
+    // req.params //  get('/:id', (req...,  localhost:3000/1234 -> {id:1234}
 })
 app.post('/profile', (req, res) => {
     console.log(req.body)
