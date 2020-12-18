@@ -1,3 +1,5 @@
+// www.youtube.com/feed/history/comment_history
+
 a = function() {
 var del_btns = document.querySelector('[aria-label="Delete activity item"]');
 del_btns.click();
