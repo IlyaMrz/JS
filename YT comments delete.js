@@ -9,7 +9,7 @@ var menu_btns = document.querySelector('[aria-label="Open activity options menu"
 menu_btns.click();
 }
 
-var i = 100;
+var i = 1000;
 
 f = function() {
 
