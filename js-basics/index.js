@@ -1,5 +1,14 @@
-let my_div = document.createElement('div');
-// let my_span = document.createElement('span')
-// my_span.innerText = 'whw hoo';
-addEventListener('click',()=>console.log(`you clicked on this ${}`));
-console.log(this);
+let my_box = document.getElementById('box');
+// console.log(my_box);
+
+
+my_box.addEventListener('click',clk);
+
+
+function clk(e) {
+    e.preventDefault();
+    console.log(my_box)
+    my_box.style.backgroundColor === "red" ? 
+    my_box.style.backgroundColor = "blue" :
+    my_box.style.backgroundColor = "red";
+}

@@ -51,6 +51,7 @@ function removeItem(e){
 
 // Filter Items
 function filterItems(e){
+  console.log(e);
   // convert text to lowercase
   var text = e.target.value.toLowerCase();
   // Get lis
@@ -64,4 +65,5 @@ function filterItems(e){
       item.style.display = 'none';
     }
   });
+  console.log(items)
 }
