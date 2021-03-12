@@ -8,3 +8,7 @@ test2.js
 /node/node_modules/
 /node/1/node_modules/
 facerecognition/node_modules
+
+/myPholio/node_modules/
+/myPholio/.gitignore
+/myPholio/build/
