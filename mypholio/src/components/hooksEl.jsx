@@ -13,12 +13,12 @@ function HooksEl() {
     }
 
     return (
-        <div style={{backgroundColor:"#c8c6a7",display:'flex', justifyContent:'center',alignItems:'center', height: "34%"}}>
+        <div style={{backgroundColor:"#c8c6a7",display:'flex', justifyContent:'center',alignItems:'center', height: "100%"}}>
         <div style={{backgroundColor: "#6e7c7c",
         borderRadius:"0 65px 0 65px",
         display:"flex",
         boxShadow: "0 0 0 5px coral, 0 0 0 10px #435560, 0 0 0 15px grey",
-        height: "35%",
+        height: "15%",
         width: "600px",
         justifyContent:"space-around"}}>
             <div style={{color:'white'}}>simple as fuck <br /> second line <br /> third line</div>
