@@ -4,11 +4,13 @@ import HooksEl from '../components/hooksEl';
 import ReduxEl from '../components/reduxEl';
 import NavHeader from '../components/nav';
 import {  BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import AlertComponent from '../components/alert';
 
 
 function MainPage() {
     return (
         <div style={{height:"91.7%"}}>
+            <AlertComponent />
         <Router>
             <div className="nav">
                 <NavHeader />
