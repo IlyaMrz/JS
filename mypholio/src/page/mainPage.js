@@ -2,7 +2,8 @@ import React from 'react';
 import SimpleStateEl from '../components/simpleStateEl';
 import HooksEl from '../components/hooksEl';
 import ReduxEl from '../components/reduxEl';
-import {  BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import NavHeader from '../components/nav';
+import {  BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
 function MainPage() {
@@ -10,9 +11,10 @@ function MainPage() {
         <div style={{height:"91.7%"}}>
         <Router>
             <div className="nav">
-                <Link to="/">Simple State</Link>
+                <NavHeader />
+                {/* <Link to="/">Simple State</Link>
                 <Link to="reacthooks">react Hooks</Link>
-                <Link to="reactredux">react Redux</Link>
+                <Link to="reactredux">react Redux</Link> */}
             </div>
             <Switch>
                 <Route exact path="/" component={SimpleStateEl} />

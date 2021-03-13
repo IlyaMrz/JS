@@ -1,6 +1,7 @@
 //simple state
 import React from 'react';
 import "./states.scss";
+
 class SimpleStateEl extends React.Component {
     constructor() {
         super();
