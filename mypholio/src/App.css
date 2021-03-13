@@ -2,3 +2,15 @@
 a {
     margin: 5px;
 }
+.nav {
+    display: flex;
+    justify-content: center;
+    background-color: #eae3c8;
+    border-bottom: 2px solid;
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: #eae3c8;
+    border-top: 2px solid;
+}

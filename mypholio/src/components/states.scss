@@ -1,0 +1,42 @@
+div .first {
+    background-color:#c8c6a7;
+    display:flex;
+    justify-content:center;
+    align-items:center; 
+    height: 100%;
+}
+
+div .second {
+    background-color: #6e7c7c;
+    border-radius: 0 65px 0 65px;
+    display:flex;
+    box-shadow: 0 0 0 5px coral,
+     0 0 0 10px #435560,
+     0 0 0 15px grey;
+    height: 15%;
+    width: 600px;
+    justify-content: space-around;
+
+    div {
+        color: white;
+    }
+
+    p {
+        color: white;
+    }
+
+    .third {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+
+        button {
+            margin:4px 10px;
+        }
+    }
+
+    .last {
+        color:white;
+        margin-right:15px;
+    }
+}

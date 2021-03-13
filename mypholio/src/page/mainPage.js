@@ -7,9 +7,9 @@ import {  BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 function MainPage() {
     return (
-
+        <div style={{height:"91.7%"}}>
         <Router>
-            <div>
+            <div className="nav">
                 <Link to="/">Simple State</Link>
                 <Link to="reacthooks">react Hooks</Link>
                 <Link to="reactredux">react Redux</Link>
@@ -20,7 +20,8 @@ function MainPage() {
                 <Route exact path="/reactredux" component={ReduxEl} />
             </Switch> 
         </Router>
-
+        <div className="footer">footer</div>
+        </div>
     )
 }
 
