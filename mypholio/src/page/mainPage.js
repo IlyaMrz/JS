@@ -9,22 +9,19 @@ import AlertComponent from '../components/alert';
 
 function MainPage() {
     return (
-        <div style={{height:"91.7%"}}>
-            <AlertComponent />
-        <Router>
-            <div className="nav">
-                <NavHeader />
-                {/* <Link to="/">Simple State</Link>
-                <Link to="reacthooks">react Hooks</Link>
-                <Link to="reactredux">react Redux</Link> */}
-            </div>
-            <Switch>
-                <Route exact path="/" component={SimpleStateEl} />
-                <Route exact path="/reacthooks" component={HooksEl} />
-                <Route exact path="/reactredux" component={ReduxEl} />
-            </Switch> 
-        </Router>
-        <div className="footer">footer</div>
+        <div class="mainDiv">
+                <AlertComponent />
+            <Router>
+                <div className="nav">
+                    <NavHeader />
+                </div>
+                <Switch>
+                    <Route exact path="/" component={SimpleStateEl} />
+                    <Route exact path="/reacthooks" component={HooksEl} />
+                    <Route exact path="/reactredux" component={ReduxEl} />
+                </Switch> 
+            </Router>
+            <div className="footer">footer</div>
         </div>
     )
 }

@@ -19,7 +19,7 @@ function AlertComponent() {
       <>
 
         <Alert show={show} variant="success" style={{margin:'30px',opacity:'0.94',zIndex:'5',width:"450px",display:"flex", justifyContent:"space-between", position:"absolute"}}>
-          How's reading -> have a nice day :)
+          How's reading - have a nice day :)
           
           <Button style={{padding:"2px", margin: "0"}} onClick={() => setShow(false)} variant="outline-success">
             Close me y'all!
