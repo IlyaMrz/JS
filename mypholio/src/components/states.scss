@@ -1,13 +1,25 @@
+.first {
+    background-color:#c8c6a7;
+    display:flex;
+    justify-content:center;
+    align-items:center; 
+    height: 100%;
+    width: 100%;
+}
 
 .second {
     background-color: #6e7c7c;
-    border-radius: 0 65px 0 65px;
+    border-radius: 0 3em 0 3em;
     display:flex;
     box-shadow: 0 0 0 5px coral,
-     0 0 0 10px #435560,
-     0 0 0 15px grey;
-    width: 650px;
+     0 0 0 0.5em #435560,
+     0 0 0 0.2em grey;
+    width: 60vw;
+    min-width: 340px;
+    max-height: 15vh;
     justify-content: space-around;
+    overflow: hidden;
+
 
     div {
         color: white;
@@ -23,12 +35,15 @@
         justify-content:center;
 
         button {
-            margin:4px 10px;
+            margin:0.1em;
+            background-color: #eae3c8;
+            padding:0.1em;
+            border-radius: 1em;
         }
     }
 
     .last {
         color:white;
-        margin-right:15px;
+        margin-right:2em;
     }
 }

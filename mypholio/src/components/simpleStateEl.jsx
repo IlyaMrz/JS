@@ -28,7 +28,7 @@ class SimpleStateEl extends React.Component {
                         <button onClick={this.decrease}>decrease</button>
                     </div>
                     <div className="last">
-                    {innerCount}{innerCount}{innerCount}{innerCount}
+                    {innerCount}{innerCount}
                    </div>
                 </div>
             </div>

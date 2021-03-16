@@ -10,7 +10,9 @@ import AlertComponent from '../components/alert';
 function MainPage() {
     return (
         <div class="mainDiv">
-                <AlertComponent />
+                <div id="alert">
+                 <AlertComponent />
+                </div>
             <Router>
                 <div className="nav">
                     <NavHeader />

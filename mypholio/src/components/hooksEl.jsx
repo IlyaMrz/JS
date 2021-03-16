@@ -23,7 +23,7 @@ function HooksEl() {
                     <button onClick={decrease}>decrease</button>
                 </div>
                 <div className='last'>
-                {count}{count}{count}{count}
+                {count}{count}
                </div>
             </div>
         </div>

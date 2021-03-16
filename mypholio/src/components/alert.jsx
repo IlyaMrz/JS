@@ -18,11 +18,11 @@ function AlertComponent() {
     return (
       <>
 
-        <Alert show={show} variant="success" style={{margin:'30px',opacity:'0.94',zIndex:'5',width:"450px",display:"flex", justifyContent:"space-between", position:"absolute"}}>
-          How's reading - have a nice day :)
+        <Alert show={show} variant="success" style={{margin:'30px',opacity:'0.94',zIndex:'5',width:"auto", minWidth: "330px",display:"flex", justifyContent:"space-between", position:"absolute"}}>
+          <p style={{margin:"0", padding:"0", marginTop:"2px"}}>Have a nice day :)</p>
           
-          <Button style={{padding:"2px", margin: "0"}} onClick={() => setShow(false)} variant="outline-success">
-            Close me y'all!
+          <Button style={{padding:"2px", margin: "0", marginLeft:"20px", height:'30px'}} onClick={() => setShow(false)} variant="outline-success">
+            Close
           </Button>
         </Alert>
   

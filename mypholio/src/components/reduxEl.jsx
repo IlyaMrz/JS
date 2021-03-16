@@ -32,7 +32,7 @@ class ReduxEl extends React.Component {
                     <button onClick={toggleDecreaseInner}>decrease</button>
                 </div>
                 <div className="last">
-                {count}{count}{count}{count}
+                {count}{count}
                </div>
             </div>
         </div>
