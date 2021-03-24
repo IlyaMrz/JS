@@ -13,8 +13,8 @@ var i = 1000;
 
 f = function() {
 
-if (i >= 0) setTimeout(b, 1200);
-if (i >= 0) setTimeout(a, 1200);
+if (i >= 0) setTimeout(b, 200);
+if (i >= 0) setTimeout(a, 800);
 
 i -= 1;
 if (i == 0)
@@ -25,14 +25,23 @@ setTimeout(f, 1200);
 }
 
 f();
+//============================================================================
 
 
+a = function() {
+var del_btns = document.querySelector('[aria-label="Delete activity item"]');
+del_btns.click();
+}
 
 
+var i = 1000;
+while (i>0) {
+	setTimeout(a, 1100);
+	i--;
+}
 
 
-
-
+//============================
 
 
 a = function() {

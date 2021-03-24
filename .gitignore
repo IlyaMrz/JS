@@ -12,3 +12,5 @@ facerecognition/node_modules
 /myPholio/node_modules/
 /myPholio/.gitignore
 /myPholio/build/
+
+/js-basics/testSomeJS.js
