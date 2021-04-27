@@ -3,7 +3,7 @@
 
 var fs = require('fs');
 
-let file = fs.readFileSync('D:\\albumSM\\rawTracks.txt', 'utf8');
+let file = fs.readFileSync('D:\\albumSM\\_rawTracks.txt', 'utf8');
 file = file.split('\n').filter(e=>!e.includes('http')).filter(e=>e!=='\r') //?
 file = file.filter(e => !['[',']'].includes(e)).join('') //?
 let final = file.replace(/[^\x00-\xFF]/g, ""); //?
