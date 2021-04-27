@@ -2,8 +2,9 @@
 
 var fs = require('fs');
 
-let file = fs.readFileSync('rawTracks.txt', 'utf8');
+let file = fs.readFileSync('D:\\albumSM\\rawTracks.txt', 'utf8');
 file = file.split('\n').filter(e=>!e.includes('http')).filter(e=>e!=='\r') //?
 file = file.filter(e => !['[',']'].includes(e)).join('') //?
 
-fs.writeFileSync('Tracks.txt', file)
+//fs.writeFileSync('Tracks.txt', file)
+fs.writeFileSync('D:\\albumSM\\Tracks.txt', file)
