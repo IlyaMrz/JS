@@ -3,7 +3,7 @@
 
 var fs = require('fs');
 
-unacceptable = ['[',']','?','!','~','@','#','%','&','*','{','}']
+unacceptable = ['[',']','?','!','~','@','#','%','&','*','{','}','/','\\']
 
 let file = fs.readFileSync('D:\\albumSM\\_rawTracks.txt', 'utf8');
 file = file.split('\n').filter(e=> !e.includes('http') && e!=='\r' && e.match(".*\\d:\\d\\d.*")).join('') //?
