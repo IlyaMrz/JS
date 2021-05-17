@@ -15,3 +15,6 @@ facerecognition/node_modules
 /myPholio/build/
 
 /js-basics/testSomeJS.js
+
+/jest_test/node_modules/
+*/node_modules/
