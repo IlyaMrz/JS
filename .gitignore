@@ -17,4 +17,4 @@ facerecognition/node_modules
 /js-basics/testSomeJS.js
 
 /jest_test/node_modules/
-*/node_modules/
+**/node_modules/
