@@ -18,3 +18,5 @@ facerecognition/node_modules
 
 /jest_test/node_modules/
 **/node_modules/
+**/.cache/
+**/*.txt
