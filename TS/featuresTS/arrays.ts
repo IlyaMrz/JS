@@ -1,3 +1,5 @@
+export {}; // quick fix for cannot redeclare block scoped variable
+
 const carMakers = ["ford", "toyota", "chevy"];
 const dates = [new Date(), new Date()];
 
