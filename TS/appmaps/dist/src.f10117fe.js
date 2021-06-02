@@ -136888,12 +136888,17 @@ var User =
 /** @class */
 function () {
   function User() {
+    this.color = "orange";
     this.name = faker_1.default.name.firstName();
     this.location = {
       lat: parseFloat(faker_1.default.address.latitude()),
       lng: parseFloat(faker_1.default.address.longitude())
     };
   }
+
+  User.prototype.markContent = function () {
+    return "<h3>User Name: " + this.name + "</h3>";
+  };
 
   return User;
 }();
@@ -136919,6 +136924,7 @@ var Company =
 /** @class */
 function () {
   function Company() {
+    this.color = "blue";
     this.companyName = faker_1.default.company.companyName();
     this.catchPhrase = faker_1.default.company.catchPhrase();
     this.location = {
@@ -136927,11 +136933,55 @@ function () {
     };
   }
 
+  Company.prototype.markContent = function () {
+    return "\n            <div>\n                <h2>Company Name: " + this.companyName + "</h2>\n                <h4>Catchphrase: " + this.catchPhrase + "</h4>\n            </div>\n        ";
+  };
+
   return Company;
 }();
 
 exports.Company = Company;
-},{"faker":"node_modules/faker/index.js"}],"src/index.ts":[function(require,module,exports) {
+},{"faker":"node_modules/faker/index.js"}],"src/CustomMap.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CustomMap = void 0;
+
+var CustomMap =
+/** @class */
+function () {
+  function CustomMap(divId, location) {
+    this.googleMap = new google.maps.Map(document.getElementById(divId), {
+      zoom: 1,
+      center: location
+    });
+  }
+
+  CustomMap.prototype.addMarker = function (markableItem) {
+    var _this = this;
+
+    var marker = new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: markableItem.location.lat,
+        lng: markableItem.location.lng
+      }
+    });
+    marker.addListener("click", function () {
+      var infoWindow = new google.maps.InfoWindow({
+        content: markableItem.markContent()
+      });
+      infoWindow.open(_this.googleMap, marker);
+    });
+  };
+
+  return CustomMap;
+}();
+
+exports.CustomMap = CustomMap;
+},{}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -136942,27 +136992,26 @@ var User_1 = require("./User");
 
 var Company_1 = require("./Company");
 
+var CustomMap_1 = require("./CustomMap");
+
 var firstUser = new User_1.User();
 var firstCompany = new Company_1.Company();
-console.log("whooo is here");
-console.log("\nUser:\n    name: " + firstUser.name + "\n    lat: " + firstUser.location.lat + "\n    lng: " + firstUser.location.lng + "\n");
-console.log("\nCompany:\n    name: " + firstCompany.companyName + "\n    lat: " + firstCompany.location.lat + "\n    lng: " + firstCompany.location.lng + "\n");
-var map; // function initMap(): void {
-//     map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-//         center: { lat: -34.397, lng: 150.644 },
-//         zoom: 8,
-//     });
-// }
-
-new google.maps.Map(document.getElementById("map"), {
-  zoom: 4,
-  center: {
-    lat: 0,
-    lng: 0
-  } // center: firstCompany.location,
-
-});
-},{"./User":"src/User.ts","./Company":"src/Company.ts"}],"../../../../../Users/knpka/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var customMap = new CustomMap_1.CustomMap("map", firstCompany.location);
+customMap.addMarker(firstUser);
+customMap.addMarker(firstCompany); // console.log("whooo is here");
+// console.log(`
+// User:
+//     name: ${firstUser.name}
+//     lat: ${firstUser.location.lat}
+//     lng: ${firstUser.location.lng}
+// `);
+// console.log(`
+// Company:
+//     name: ${firstCompany.companyName}
+//     lat: ${firstCompany.location.lat}
+//     lng: ${firstCompany.location.lng}
+// `);
+},{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"../../../../../Users/knpka/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -136990,7 +137039,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61646" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56484" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
