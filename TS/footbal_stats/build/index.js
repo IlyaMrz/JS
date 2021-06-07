@@ -1,17 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var MatchReader_1 = require("./MatchReader");
-var CsvFileReader_1 = require("./CsvFileReader");
-var MatchResults_1 = require("./MatchResults");
-var csvReader = new CsvFileReader_1.CsvFileReader("football.csv");
-var reader = new MatchReader_1.MatchReader(csvReader);
-reader.load();
-var manUnitedWins = 0;
-for (var _i = 0, _a = reader.matches; _i < _a.length; _i++) {
-    var match = _a[_i];
-    if ((match[1] === "Man United" && match[5] === MatchResults_1.MatchResult.HomeWin) ||
-        (match[2] === "Man United" && match[5] === MatchResults_1.MatchResult.AwayWin)) {
-        manUnitedWins++;
-    }
-}
-console.log("_____ : " + manUnitedWins);
+// import { CsvFileReader } from "./CsvFileReader";
+// import { ConsoleReport } from "./reportTargets/ConsoleReport";
+// import { WinsAnalysis } from "./analyzers/WinsAnalysis";
+var Summary_1 = require("./Summary");
+// import { HtmlReport } from "./reportTargets/HtmlReport";
+// const csvReader = new CsvFileReader("football.csv");
+// const reader = new MatchReader(csvReader);
+// reader.load();
+// const summary = new Summary(new WinsAnalysis("Southampton"), new ConsoleReport());
+// const summary2 = new Summary(new WinsAnalysis("Crystal Palace"), new HtmlReport());
+// summary.buildAndPrintReport(reader.matches);
+// summary2.buildAndPrintReport(reader.matches);
+// static method in MatchReader and Summary instead of 2 lines for each
+var matchReader = MatchReader_1.MatchReader.fromCsv("football.csv");
+var summary3 = Summary_1.Summary.winsAnalysisWithHtmlReport("Arsenal");
+matchReader.load();
+summary3.buildAndPrintReport(matchReader.matches);
