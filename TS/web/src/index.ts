@@ -1,8 +1,14 @@
 import { User } from "./models/User";
 
-const user = new User({ name: "Brouty", age: 12 });
+const user = User.buildUser({ id: 1 });
 
-user.events.on("change", () => {
-    console.log("weee");
+// console.log(user.get("name"));
+user.on("change", () => {
+    console.log(user);
 });
-user.events.trigger("change");
+
+// user.save();
+user.fetch();
+
+// console.log(user);
+// user.set({ name: "Allan" });

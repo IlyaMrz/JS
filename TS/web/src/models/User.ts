@@ -1,4 +1,7 @@
+import { ApiSync } from "./ApiSync";
+import { Attributes } from "./Attributes";
 import { Eventing } from "./Eventing";
+import { Model } from "./Model";
 
 export interface userProps {
     name?: string;
@@ -6,16 +9,14 @@ export interface userProps {
     id?: number;
 }
 
-export class User {
-    public events: Eventing = new Eventing();
+const rootUrl = "http://localhost:3000/users";
 
-    constructor(private data: userProps) {}
-
-    get(propName: string): string | number {
-        return this.data[propName];
-    }
-
-    set(update: userProps): void {
-        Object.assign(this.data, update);
+export class User extends Model<userProps> {
+    static buildUser(attrs: userProps): User {
+        return new User(
+            new Attributes<userProps>(attrs),
+            new Eventing(),
+            new ApiSync<userProps>(rootUrl)
+        );
     }
 }
