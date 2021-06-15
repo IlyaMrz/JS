@@ -2217,43 +2217,24 @@ function (_super) {
 }(Model_1.Model);
 
 exports.User = User;
-},{"./ApiSync":"src/models/ApiSync.ts","./Attributes":"src/models/Attributes.ts","./Eventing":"src/models/Eventing.ts","./Model":"src/models/Model.ts","./Collection":"src/models/Collection.ts"}],"src/views/UserForm.ts":[function(require,module,exports) {
+},{"./ApiSync":"src/models/ApiSync.ts","./Attributes":"src/models/Attributes.ts","./Eventing":"src/models/Eventing.ts","./Model":"src/models/Model.ts","./Collection":"src/models/Collection.ts"}],"src/views/View.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UserForm = void 0;
+exports.View = void 0;
 
-var UserForm =
+var View =
 /** @class */
 function () {
-  function UserForm(parent, model) {
-    var _this = this;
-
+  function View(parent, model) {
     this.parent = parent;
     this.model = model;
-
-    this.onSetAgeClick = function () {
-      _this.model.setRandomAge();
-    };
-
-    this.onSetNameClick = function () {
-      var input = _this.parent.querySelector("input");
-
-      if (input) {
-        var name = input.value;
-
-        _this.model.set({
-          name: name
-        });
-      }
-    };
-
     this.bindModelRerender();
   }
 
-  UserForm.prototype.bindModelRerender = function () {
+  View.prototype.bindModelRerender = function () {
     var _this = this;
 
     this.model.on("change", function () {
@@ -2261,18 +2242,7 @@ function () {
     });
   };
 
-  UserForm.prototype.eventMap = function () {
-    return {
-      "click:.set-age": this.onSetAgeClick,
-      "click:.set-name": this.onSetNameClick
-    };
-  };
-
-  UserForm.prototype.template = function () {
-    return "\n            <div>\n                <h1>User Form</h1>\n                <div>User name: <b>" + this.model.get("name") + "</b></div>\n                <div>User age: <b>" + this.model.get("age") + "</b></div>\n                <input />\n                <button class=\"set-name\">Change Name</button>\n                <button class=\"set-age\">Set Random Age</button>\n            </div>\n        ";
-  };
-
-  UserForm.prototype.bindEvents = function (fragment) {
+  View.prototype.bindEvents = function (fragment) {
     var eventMap = this.eventMap();
 
     var _loop_1 = function _loop_1(eventKey) {
@@ -2290,7 +2260,7 @@ function () {
     }
   };
 
-  UserForm.prototype.render = function () {
+  View.prototype.render = function () {
     this.parent.innerHTML = "";
     var templateElement = document.createElement("template");
     templateElement.innerHTML = this.template();
@@ -2298,11 +2268,91 @@ function () {
     this.parent.append(templateElement.content);
   };
 
-  return UserForm;
+  return View;
 }();
 
+exports.View = View;
+},{}],"src/views/UserForm.ts":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UserForm = void 0;
+
+var View_1 = require("./View");
+
+var UserForm =
+/** @class */
+function (_super) {
+  __extends(UserForm, _super);
+
+  function UserForm() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.onSetAgeClick = function () {
+      _this.model.setRandomAge();
+    };
+
+    _this.onSetNameClick = function () {
+      var input = _this.parent.querySelector("input");
+
+      if (input) {
+        var name = input.value;
+
+        _this.model.set({
+          name: name
+        });
+      }
+    };
+
+    return _this;
+  }
+
+  UserForm.prototype.eventMap = function () {
+    return {
+      "click:.set-age": this.onSetAgeClick,
+      "click:.set-name": this.onSetNameClick
+    };
+  };
+
+  UserForm.prototype.template = function () {
+    return "\n            <div>\n                <h1>User Form</h1>\n                <div>User name: <b>" + this.model.get("name") + "</b></div>\n                <div>User age: <b>" + this.model.get("age") + "</b></div>\n                <input />\n                <button class=\"set-name\">Change Name</button>\n                <button class=\"set-age\">Set Random Age</button>\n            </div>\n        ";
+  };
+
+  return UserForm;
+}(View_1.View);
+
 exports.UserForm = UserForm;
-},{}],"src/index.ts":[function(require,module,exports) {
+},{"./View":"src/views/View.ts"}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
