@@ -2206,11 +2206,103 @@ function (_super) {
     });
   };
 
+  User.prototype.setRandomAge = function () {
+    var newAge = Math.floor(Math.random() * 100);
+    this.set({
+      age: newAge
+    });
+  };
+
   return User;
 }(Model_1.Model);
 
 exports.User = User;
-},{"./ApiSync":"src/models/ApiSync.ts","./Attributes":"src/models/Attributes.ts","./Eventing":"src/models/Eventing.ts","./Model":"src/models/Model.ts","./Collection":"src/models/Collection.ts"}],"src/index.ts":[function(require,module,exports) {
+},{"./ApiSync":"src/models/ApiSync.ts","./Attributes":"src/models/Attributes.ts","./Eventing":"src/models/Eventing.ts","./Model":"src/models/Model.ts","./Collection":"src/models/Collection.ts"}],"src/views/UserForm.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UserForm = void 0;
+
+var UserForm =
+/** @class */
+function () {
+  function UserForm(parent, model) {
+    var _this = this;
+
+    this.parent = parent;
+    this.model = model;
+
+    this.onSetAgeClick = function () {
+      _this.model.setRandomAge();
+    };
+
+    this.onSetNameClick = function () {
+      var input = _this.parent.querySelector("input");
+
+      if (input) {
+        var name = input.value;
+
+        _this.model.set({
+          name: name
+        });
+      }
+    };
+
+    this.bindModelRerender();
+  }
+
+  UserForm.prototype.bindModelRerender = function () {
+    var _this = this;
+
+    this.model.on("change", function () {
+      _this.render();
+    });
+  };
+
+  UserForm.prototype.eventMap = function () {
+    return {
+      "click:.set-age": this.onSetAgeClick,
+      "click:.set-name": this.onSetNameClick
+    };
+  };
+
+  UserForm.prototype.template = function () {
+    return "\n            <div>\n                <h1>User Form</h1>\n                <div>User name: <b>" + this.model.get("name") + "</b></div>\n                <div>User age: <b>" + this.model.get("age") + "</b></div>\n                <input />\n                <button class=\"set-name\">Change Name</button>\n                <button class=\"set-age\">Set Random Age</button>\n            </div>\n        ";
+  };
+
+  UserForm.prototype.bindEvents = function (fragment) {
+    var eventMap = this.eventMap();
+
+    var _loop_1 = function _loop_1(eventKey) {
+      var _a = eventKey.split(":"),
+          eventName = _a[0],
+          selector = _a[1];
+
+      fragment.querySelectorAll(selector).forEach(function (element) {
+        element.addEventListener(eventName, eventMap[eventKey]);
+      });
+    };
+
+    for (var eventKey in eventMap) {
+      _loop_1(eventKey);
+    }
+  };
+
+  UserForm.prototype.render = function () {
+    this.parent.innerHTML = "";
+    var templateElement = document.createElement("template");
+    templateElement.innerHTML = this.template();
+    this.bindEvents(templateElement.content);
+    this.parent.append(templateElement.content);
+  };
+
+  return UserForm;
+}();
+
+exports.UserForm = UserForm;
+},{}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2219,12 +2311,26 @@ Object.defineProperty(exports, "__esModule", {
 
 var User_1 = require("./models/User");
 
-var collection = User_1.User.buildUserCollection();
-collection.on("change", function () {
-  console.log(collection);
+var UserForm_1 = require("./views/UserForm");
+
+var user = User_1.User.buildUser({
+  name: "Rebecca",
+  age: 19
 });
-collection.fetch();
-},{"./models/User":"src/models/User.ts"}],"../../../../../Users/knpka/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var root = document.getElementById("root");
+
+if (root) {
+  var userForm = new UserForm_1.UserForm(root, user);
+  userForm.render();
+} else {
+  throw new Error("Root element not found");
+} // import { User } from "./models/User";
+// const collection = User.buildUserCollection();
+// collection.on("change", () => {
+//     console.log(collection);
+// });
+// collection.fetch();
+},{"./models/User":"src/models/User.ts","./views/UserForm":"src/views/UserForm.ts"}],"../../../../../Users/knpka/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2252,7 +2358,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55236" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56164" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
