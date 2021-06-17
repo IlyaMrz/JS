@@ -2,7 +2,7 @@ import { ApiSync } from "./ApiSync";
 import { Attributes } from "./Attributes";
 import { Eventing } from "./Eventing";
 import { Model } from "./Model";
-import { Colletion } from "./Collection";
+import { Collection } from "./Collection";
 
 export interface userProps {
     name?: string;
@@ -21,8 +21,8 @@ export class User extends Model<userProps> {
         );
     }
 
-    static buildUserCollection(): Colletion<User, userProps> {
-        return new Colletion<User, userProps>("http://localhost:3000/users", (json: userProps) =>
+    static buildUserCollection(): Collection<User, userProps> {
+        return new Collection<User, userProps>("http://localhost:3000/users", (json: userProps) =>
             User.buildUser(json)
         );
     }
