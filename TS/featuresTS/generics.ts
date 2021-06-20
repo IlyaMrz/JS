@@ -51,7 +51,7 @@ printAnything(["1", 2, 3]); //type inference
 
 //generic constraints
 
-class Car {
+class Car2 {
     print() {
         console.log("I am a car");
     }
@@ -73,5 +73,5 @@ function printHousesOrCars<T extends Printable>(arr: T[]): void {
     }
 }
 
-printHousesOrCars<Car>([new Car(), new Car()]);
-printHousesOrCars([new House(), new Car()]); //?
+printHousesOrCars<Car2>([new Car2(), new Car2()]);
+printHousesOrCars([new House(), new Car2()]); //?
