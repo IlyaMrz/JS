@@ -4,23 +4,25 @@ class Boat {
         return `This boat color is ${this.color}`;
     }
 
-    @logError // decorator only executes one time when class defined!
+    @logError("oops boat was sunk. kek") // decorator only executes one time when class defined!
     pilot(): void {
         throw new Error();
         console.log("weeeeeee");
     }
 }
 
-function logError(target: any, key: string, desc: PropertyDescriptor): void {
-    const method = desc.value;
+function logError(errorMessage: string) {
+    return function (target: any, key: string, desc: PropertyDescriptor): void {
+        const method = desc.value;
 
-    desc.value = function () {
-        try {
-            console.log("tryin");
-            method();
-        } catch (e) {
-            console.log("oops ");
-        }
+        desc.value = function () {
+            try {
+                console.log("tryin");
+                method();
+            } catch (e) {
+                console.log(errorMessage);
+            }
+        };
     };
 }
 
