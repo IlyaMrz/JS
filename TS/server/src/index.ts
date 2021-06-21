@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { router } from "./routes/loginRoutes";
 // import bodyParser from "body-parser";
-import { router as controllerRouter } from "./controllers/decorators/controller";
+import { AppRouter } from "./AppRouter";
 import cookieSession from "cookie-session";
 
 import "./controllers/LoginController";
@@ -14,7 +14,7 @@ app.use(
         keys: ["asdfaff1"],
     })
 );
-app.use(controllerRouter);
 app.use(router);
+app.use(AppRouter.getInstance());
 
 app.listen(3000);
