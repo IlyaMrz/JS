@@ -14,17 +14,6 @@ function requireAuth(req, res, next) {
 }
 var router = express_1.Router();
 exports.router = router;
-router.post("/login", function (req, res) {
-    var _a = req.body, email = _a.email, password = _a.password;
-    if (email && password && email === "a@a.a" && password === "a") {
-        req.session = { loggedIn: true };
-        res.redirect("/");
-        // res.send(`u r logged in as <b>${email}</b>`);
-    }
-    else {
-        res.send("access denied");
-    }
-});
 router.get("/", function (req, res) {
     if (req.session && req.session.loggedIn) {
         res.send("\n            <div>\n                <div>u r logged in as <b>\"user\"</b></div>\n                <a href=\"/protected\">protected side</a>\n                <a href=\"/logout\">Logout</a>\n                <div>\n\n                    here is super secret stuff\n                </div>\n            </div>\n        ");
