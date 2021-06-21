@@ -11,6 +11,7 @@ class Plane {
 }
 
 function markFunction(secretInfo: string) {
+    // when decorator apply for functin or property target is a prototype
     return function (target: Plane, key: string) {
         Reflect.defineMetadata("secret", secretInfo, target, key);
     };
@@ -20,6 +21,7 @@ function markFunction(secretInfo: string) {
 // console.log(secret);
 
 function printMetadata(target: typeof Plane) {
+    //when decorator apply in class target is constructor
     for (let key in target.prototype) {
         const secret = Reflect.getMetadata("secret", target.prototype, key);
         console.log(secret);
