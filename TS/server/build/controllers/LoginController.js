@@ -28,6 +28,15 @@ var LoginController = /** @class */ (function () {
             res.send("access denied");
         }
     };
+    LoginController.prototype.getLogout = function (req, res) {
+        if (req.session && req.session.loggedIn) {
+            req.session = undefined;
+            res.redirect("/");
+        }
+        else {
+            res.send("<a href=\"/login\">Log in</a>");
+        }
+    };
     __decorate([
         decorators_1.get("/login"),
         __metadata("design:type", Function),
@@ -41,6 +50,12 @@ var LoginController = /** @class */ (function () {
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", void 0)
     ], LoginController.prototype, "postLogin", null);
+    __decorate([
+        decorators_1.get("/logout"),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object, Object]),
+        __metadata("design:returntype", void 0)
+    ], LoginController.prototype, "getLogout", null);
     LoginController = __decorate([
         decorators_1.controller("/auth")
     ], LoginController);

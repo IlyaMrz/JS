@@ -32,4 +32,14 @@ export class LoginController {
             res.send(`access denied`);
         }
     }
+
+    @get("/logout")
+    getLogout(req: Request, res: Response) {
+        if (req.session && req.session.loggedIn) {
+            req.session = undefined;
+            res.redirect("/");
+        } else {
+            res.send(`<a href="/login">Log in</a>`);
+        }
+    }
 }
