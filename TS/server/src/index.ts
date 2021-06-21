@@ -1,7 +1,10 @@
 import express, { Request, Response } from "express";
-import { router } from "./routes.ts/loginRoutes";
+import { router } from "./routes/loginRoutes";
 // import bodyParser from "body-parser";
+import { router as controllerRouter } from "./controllers/decorators/controller";
 import cookieSession from "cookie-session";
+
+import "./controllers/LoginController";
 
 const app = express();
 
@@ -11,6 +14,7 @@ app.use(
         keys: ["asdfaff1"],
     })
 );
+app.use(controllerRouter);
 app.use(router);
 
 app.listen(3000);
