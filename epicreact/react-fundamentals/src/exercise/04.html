@@ -20,10 +20,11 @@
     
     // 🐨 use that function in place of the divs below with:
     const element = (
-      <div className='container'>
-        <Message greeting="Hello" subject="World" />
-        {React.createElement(Message, {greeting:"Goodbye", subject:"World"})}
-      </div>)
+        <React.Fragment>
+          <Message greeting="Hello" subject="World" />
+          {React.createElement(Message, {greeting:"Goodbye", subject:"World"})}
+        </React.Fragment>
+        )
 
 
     // const element = (
