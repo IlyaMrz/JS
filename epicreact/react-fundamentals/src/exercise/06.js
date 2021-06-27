@@ -2,11 +2,11 @@
 // http://localhost:3000/isolated/exercise/06.js
 
 import * as React from 'react'
-import {createSemicolonClassElement} from 'typescript'
+// import {createSemicolonClassElement} from 'typescript'
 
 function UsernameForm({onSubmitUsername}) {
   // 🐨 add a submit event handler here (`handleSubmit`).
-  const [name, setName] = React.useState('none')
+  const [name, setName] = React.useState('')
   const [error, setError] = React.useState(false)
 
   const refValue = React.useRef('')
@@ -20,6 +20,8 @@ function UsernameForm({onSubmitUsername}) {
   }
 
   function onInputChange(e) {
+    e.target.value = e.target.value.toLowerCase() // auto convert user input
+
     if (e.target.value !== e.target.value.toLowerCase()) {
       setError(true)
     } else {
@@ -37,6 +39,7 @@ function UsernameForm({onSubmitUsername}) {
           ref={refValue}
           type="text"
           onChange={onInputChange}
+          value={name}
         />
       </div>
       {error ? (
