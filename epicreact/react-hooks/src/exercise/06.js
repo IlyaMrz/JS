@@ -14,21 +14,22 @@ import {
 } from '../pokemon'
 
 function PokemonInfo({pokemonName}) {
-  const [pokemon, setPokemon] = React.useState({status: 'idle', pokemon: null})
-  const [error, setError] = React.useState(null)
+  const [pokemon, setPokemon] = React.useState({
+    status: 'idle',
+    pokemon: null,
+    error: null,
+  })
 
   React.useEffect(() => {
     if (!pokemonName) return
-    setPokemon({status: 'pending', pokemon: null})
-    setError(null)
+    setPokemon({status: 'pending', pokemon: null, error: null})
 
     fetchPokemon(pokemonName)
       .then(pokemonData => {
-        setPokemon({status: 'resolved', pokemon: pokemonData})
+        setPokemon({status: 'resolved', pokemon: pokemonData, error: null})
       })
       .catch(error => {
-        setError(error)
-        setPokemon({status: 'rejected', pokemon: null})
+        setPokemon({status: 'rejected', pokemon: null, error: error})
       })
   }, [pokemonName])
 
@@ -37,7 +38,7 @@ function PokemonInfo({pokemonName}) {
     return (
       <div role="alert">
         There was an error:{' '}
-        <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
+        <pre style={{whiteSpace: 'normal'}}>{pokemon.error.message}</pre>
       </div>
     )
   }
