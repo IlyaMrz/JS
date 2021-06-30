@@ -12,21 +12,22 @@ import {
   PokemonDataView,
   PokemonInfoFallback,
 } from '../pokemon'
+import {ErrorBoundary} from 'react-error-boundary'
 
-class ErrorBoundary extends React.Component {
-  state = {error: null}
-  static getDerivedStateFromError(error) {
-    return {error}
-  }
-  render() {
-    const {error} = this.state
-    if (error) {
-      return <this.props.FallbackComponent error={error} />
-    }
+// class ErrorBoundary extends React.Component {
+//   state = {error: null}
+//   static getDerivedStateFromError(error) {
+//     return {error}
+//   }
+//   render() {
+//     const {error} = this.state
+//     if (error) {
+//       return <this.props.FallbackComponent error={error} />
+//     }
 
-    return this.props.children
-  }
-}
+//     return this.props.children
+//   }
+// }
 
 function PokemonInfo({pokemonName}) {
   const [pokemon, setPokemon] = React.useState({
@@ -77,6 +78,7 @@ function PokemonInfo({pokemonName}) {
 }
 
 function ErrorFallback({error}) {
+  console.log('ErrorFallback: ', error)
   return (
     <div role="alert">
       There was an error:{' '}
