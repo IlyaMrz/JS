@@ -10,7 +10,7 @@ import {
   PokemonErrorBoundary,
 } from '../pokemon'
 
-function useUnSafeDispatch(dispatch) {
+function useSafeDispatch(dispatch) {
   const mountedRef = React.useRef(false)
 
   React.useLayoutEffect(() => {
@@ -19,11 +19,10 @@ function useUnSafeDispatch(dispatch) {
   }, [])
 
   return React.useCallback(
-    args => {
+    (...args) => {
       if (mountedRef.current) {
         dispatch(...args)
       }
-      dispatch(...args)
     },
     [dispatch],
   )
@@ -54,7 +53,7 @@ function useAsync(initialState) {
     ...initialState,
   })
 
-  const dispatch = useUnSafeDispatch(unSafeDispatch)
+  const dispatch = useSafeDispatch(unSafeDispatch)
 
   const run = React.useCallback(
     promise => {
@@ -70,7 +69,7 @@ function useAsync(initialState) {
     },
     [dispatch],
   )
-  return [...state, run]
+  return {...state, run}
 }
 
 function PokemonInfo({pokemonName}) {
