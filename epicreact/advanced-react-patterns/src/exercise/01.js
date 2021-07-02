@@ -72,15 +72,21 @@ function useUser() {
   }
   return context
 }
-
+const updateUser = (userDispatch, user, formState) => {
+  userDispatch({type: 'start update', updates: formState})
+  userClient.updateUser(user, formState).then(
+    updatedUser => userDispatch({type: 'finish update', updatedUser}),
+    error => userDispatch({type: 'fail update', error}),
+  )
+}
 // 🐨 add a function here called `updateUser`
 // Then go down to the `handleSubmit` from `UserSettings` and put that logic in
 // this function. It should accept: dispatch, user, and updates
 
-// export {UserProvider, useUser}
+// export {UserProvider, useUser, updateUser}
 
 // src/screens/user-profile.js
-// import {UserProvider, useUser} from './context/user-context'
+// import {UserProvider, useUser, updateUser} from './context/user-context'
 function UserSettings() {
   const [{user, status, error}, userDispatch] = useUser()
 
@@ -98,11 +104,7 @@ function UserSettings() {
   function handleSubmit(event) {
     event.preventDefault()
     // 🐨 move the following logic to the `updateUser` function you create above
-    userDispatch({type: 'start update', updates: formState})
-    userClient.updateUser(user, formState).then(
-      updatedUser => userDispatch({type: 'finish update', updatedUser}),
-      error => userDispatch({type: 'fail update', error}),
-    )
+    updateUser(userDispatch, user, formState)
   }
 
   return (
