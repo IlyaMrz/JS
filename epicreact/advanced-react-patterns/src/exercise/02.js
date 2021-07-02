@@ -41,9 +41,13 @@ const ToggleButton = ({on, toggle, ...props}) => (
 
 function MyCustomShow({on, toggle}) {
   return on ? (
-    <div onClick={toggle}>yeeees</div>
+    <div style={{border: 'solid 2px lightgreen'}} onClick={toggle}>
+      yeeees
+    </div>
   ) : (
-    <div onClick={toggle}>sad but nooooo</div>
+    <div style={{border: 'solid 2px grey'}} onClick={toggle}>
+      sad but nooooo
+    </div>
   )
 }
 
