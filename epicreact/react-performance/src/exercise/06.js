@@ -22,9 +22,6 @@ function appReducer(state, action) {
   switch (action.type) {
     // we're no longer managing the dogName state in our reducer
     // 💣 remove this case
-    case 'TYPED_IN_DOG_INPUT': {
-      return {...state, dogName: action.dogName}
-    }
     case 'UPDATE_GRID_CELL': {
       return {...state, grid: updateGridCellState(state.grid, action)}
     }
@@ -118,6 +115,13 @@ Grid = React.memo(Grid)
 function Cell({row, column}) {
   const state = useAppState()
   const cell = state.grid[row][column]
+  return <CellImpl cell={cell} row={row} column={column} />
+}
+Cell = React.memo(Cell)
+
+function CellImpl({row, column}) {
+  const state = useAppState()
+  const cell = state.grid[row][column]
   const dispatch = useAppDispatch()
   const handleClick = () => dispatch({type: 'UPDATE_GRID_CELL', row, column})
   return (
@@ -133,7 +137,7 @@ function Cell({row, column}) {
     </button>
   )
 }
-Cell = React.memo(Cell)
+CellImpl = React.memo(CellImpl)
 
 function DogNameInput() {
   // 🐨 replace the useAppState and useAppDispatch with a normal useState here
