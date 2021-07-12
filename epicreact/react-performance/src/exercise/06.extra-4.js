@@ -3,13 +3,7 @@
 // http://localhost:3000/isolated/exercise/06.extra-4.js
 
 import * as React from 'react'
-import {
-  useForceRerender,
-  useDebouncedState,
-  AppGrid,
-  updateGridState,
-  updateGridCellState,
-} from '../utils'
+import {useForceRerender, useDebouncedState, AppGrid} from '../utils'
 // 🐨 you're gonna need these:
 import {RecoilRoot, useRecoilState, useRecoilCallback, atomFamily} from 'recoil'
 
