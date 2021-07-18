@@ -13,7 +13,7 @@ test('submitting the form calls onSubmit with username and password', () => {
   // const handleSubmit = data => (submittedData = data)
   //
   let submittedData
-  const handleSubmit = data => (submittedData = data)
+  const handleSubmit = jest.fn()
   // 🐨 render the login with your handleSubmit function as the onSubmit prop
   //
   render(<Login onSubmit={handleSubmit} />)
@@ -29,10 +29,11 @@ test('submitting the form calls onSubmit with username and password', () => {
   userEvent.type(screen.getByLabelText(/password/i), password)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  expect(submittedData).toEqual({
+  expect(handleSubmit).toHaveBeenCalledWith({
     username,
     password,
   })
+  expect(handleSubmit).toHaveBeenCalledTimes(1)
   // assert that submittedData is correct
   // 💰 use `toEqual` from Jest: 📜 https://jestjs.io/docs/en/expect#toequalvalue
 })
