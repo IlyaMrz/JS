@@ -33,9 +33,19 @@ test('counter increments and decrements when the buttons are clicked', () => {
   // 🐨 assert the message.textContent
   //
   expect(message.textContent).toBe('Current count: 0')
-  increment.click()
+  const incrementClickEvent = new MouseEvent('click', {
+    bubbles: true,
+    cancelable: true,
+    button: 0,
+  })
+  increment.dispatchEvent(incrementClickEvent)
   expect(message.textContent).toBe('Current count: 1')
-  decrement.click()
+  const decrementClickEvent = new MouseEvent('click', {
+    bubbles: true,
+    cancelable: true,
+    button: 0,
+  })
+  decrement.dispatchEvent(decrementClickEvent)
   expect(message.textContent).toBe('Current count: 0')
   // 🐨 cleanup by removing the div from the page (💰 div.remove())
   // div.remove()
