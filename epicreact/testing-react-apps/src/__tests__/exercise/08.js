@@ -2,7 +2,7 @@
 // http://localhost:3000/counter-hook
 
 import * as React from 'react'
-import {render, screen} from '@testing-library/react'
+import {render, screen, act} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import useCounter from '../../components/use-counter'
 
@@ -27,16 +27,27 @@ test('exposes the count and increment/decrement functions', () => {
   // 🐨 get the elements you need using screen
   // 🐨 assert on the initial state of the hook
   // 🐨 interact with the UI using userEvent and assert on the changes in the UI
-  render(<UseCounterHookExample />)
-  const increment = screen.getByRole('button', {name: /increment/i})
-  const decrement = screen.getByRole('button', {name: /decrement/i})
-  const message = screen.getByText(/current count/i)
+  // render(<UseCounterHookExample />)
+  // const increment = screen.getByRole('button', {name: /increment/i})
+  // const decrement = screen.getByRole('button', {name: /decrement/i})
+  // const message = screen.getByText(/current count/i)
 
-  expect(message).toHaveTextContent('Current count: 0')
-  userEvent.click(increment)
-  expect(message).toHaveTextContent('Current count: 1')
-  userEvent.click(decrement)
-  expect(message).toHaveTextContent('Current count: 0')
+  // expect(message).toHaveTextContent('Current count: 0')
+  // userEvent.click(increment)
+  // expect(message).toHaveTextContent('Current count: 1')
+  // userEvent.click(decrement)
+  // expect(message).toHaveTextContent('Current count: 0')
+  let result
+  function TestComponent() {
+    result = useCounter()
+    return null
+  }
+  render(<TestComponent />)
+  expect(result.count).toBe(0)
+  act(() => result.increment())
+  expect(result.count).toBe(1)
+  act(() => result.decrement())
+  expect(result.count).toBe(0)
 })
 
 /* eslint no-unused-vars:0 */
