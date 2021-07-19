@@ -4,8 +4,10 @@
 import * as React from 'react'
 import {render, screen, act} from '@testing-library/react'
 import Location from '../../examples/location'
+import {useCurrentPosition} from 'react-use-geolocation'
 
 // 🐨 set window.navigator.geolocation to an object that has a getCurrentPosition mock function
+jest.mock('react-use-geolocation')
 
 beforeAll(() => {
   window.navigator.geolocation = {
@@ -15,14 +17,14 @@ beforeAll(() => {
 
 // 💰 I'm going to give you this handy utility function
 // it allows you to create a promise that you can resolve/reject on demand.
-function deferred() {
-  let resolve, reject
-  const promise = new Promise((res, rej) => {
-    resolve = res
-    reject = rej
-  })
-  return {promise, resolve, reject}
-}
+// function deferred() {
+//   let resolve, reject
+//   const promise = new Promise((res, rej) => {
+//     resolve = res
+//     reject = rej
+//   })
+//   return {promise, resolve, reject}
+// }
 // 💰 Here's an example of how you use this:
 // const {promise, resolve, reject} = deferred()
 // promise.then(() => {/* do something */})
@@ -41,18 +43,25 @@ test('displays the users current location', async () => {
       longitude: 139,
     },
   }
+  let setReturnValue
+  function useMockCurrentPosition() {
+    const state = React.useState([])
+    setReturnValue = state[1]
+    return state[0]
+  }
+  useCurrentPosition.mockImplementation(useMockCurrentPosition)
   // 🐨 create a deferred promise here
   //
   // 🐨 Now we need to mock the geolocation's getCurrentPosition function
   // To mock something you need to know its API and simulate that in your mock:
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
   //
-  const {promise, resolve} = deferred()
-  window.navigator.geolocation.getCurrentPosition.mockImplementation(
-    callback => {
-      promise.then(() => callback(fakePosition))
-    },
-  )
+  // const {promise, resolve} = deferred()
+  // window.navigator.geolocation.getCurrentPosition.mockImplementation(
+  //   callback => {
+  //     promise.then(() => callback(fakePosition))
+  //   },
+  // )
   // here's an example of the API:
   // function success(position) {}
   // function error(error) {}
@@ -62,10 +71,13 @@ test('displays the users current location', async () => {
 
   expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
 
-  await act(async () => {
-    resolve()
-    await promise
+  act(() => {
+    setReturnValue([fakePosition])
   })
+  // await act(async () => {
+  //   resolve()
+  //   await promise
+  // })
 
   expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
 
