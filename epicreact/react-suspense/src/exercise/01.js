@@ -4,7 +4,12 @@
 import * as React from 'react'
 import {} from '../pokemon'
 // 🐨 you'll also need to get the fetchPokemon function from ../pokemon:
-import {PokemonDataView, fetchPokemon, PokemonErrorBoundary} from '../pokemon'
+import {
+  PokemonDataView,
+  fetchPokemon,
+  PokemonErrorBoundary,
+  PokemonInfoFallback,
+} from '../pokemon'
 import {createResource} from '../utils'
 
 // 💰 use it like this: fetchPokemon(pokemonName).then(handleSuccess, handleFailure)
@@ -61,7 +66,7 @@ function App() {
       <div className="pokemon-info">
         {/* 🐨 Wrap the PokemonInfo component with a React.Suspense component with a fallback */}
         <PokemonErrorBoundary>
-          <React.Suspense fallback={<div>Loading......</div>}>
+          <React.Suspense fallback={<PokemonInfoFallback name="pikachuuuu" />}>
             <PokemonInfo />
           </React.Suspense>
         </PokemonErrorBoundary>
