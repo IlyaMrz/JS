@@ -5,6 +5,7 @@ import * as React from 'react'
 import {} from '../pokemon'
 // 🐨 you'll also need to get the fetchPokemon function from ../pokemon:
 import {PokemonDataView, fetchPokemon, PokemonErrorBoundary} from '../pokemon'
+import {createResource} from '../utils'
 
 // 💰 use it like this: fetchPokemon(pokemonName).then(handleSuccess, handleFailure)
 
@@ -31,28 +32,6 @@ import {PokemonDataView, fetchPokemon, PokemonErrorBoundary} from '../pokemon'
 let pokemonResource = createResource(fetchPokemon('pikachu'))
 // 🐨 when the promise resolves, assign the "pokemon" variable to the resolved value
 // 💰 For example: somePromise.then(resolvedValue => (someValue = resolvedValue))
-
-function createResource(promise) {
-  let status = 'pending'
-  let result = promise.then(
-    resolved => {
-      status = 'success'
-      result = resolved
-    },
-    rejected => {
-      status = 'error'
-      result = rejected
-    },
-  )
-  return {
-    read() {
-      if (status === 'pending') throw result
-      if (status === 'error') throw result
-      if (status === 'success') return result
-      throw new Error('This should be impossible')
-    },
-  }
-}
 
 function PokemonInfo() {
   const pokemon = pokemonResource.read()
