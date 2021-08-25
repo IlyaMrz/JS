@@ -88,10 +88,10 @@ body[class*='01'] iframe {
 }
 
 .pokemon-info.pokemon-loading {
-  opacity: 0.6;
+  opacity: 0.4;
   transition: opacity 0s;
   /* note: the transition delay is the same as the busyDelayMs config */
-  transition-delay: 0.4s;
+  transition-delay: 0.3s;
 }
 
 .pokemon-info h2 {
