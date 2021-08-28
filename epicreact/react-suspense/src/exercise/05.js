@@ -5,6 +5,7 @@ import * as React from 'react'
 import {
   fetchPokemon,
   PokemonInfoFallback,
+  getImageUrlForPokemon,
   PokemonForm,
   PokemonDataView,
   PokemonErrorBoundary,
@@ -16,6 +17,7 @@ import {createResource} from '../utils'
 // in your DevTools "Network Tab". We're relying on that cache for this
 // approach to work!
 // ❗❗❗❗
+window.useRealAPI = true
 
 function preloadImage(src) {
   return new Promise(resolve => {
@@ -27,31 +29,30 @@ function preloadImage(src) {
 
 // we need to make a place to store the resources outside of render so
 // 🐨 create "cache" object here.
-const imgSrcResourceCache = {}
+// const imgSrcResourceCache = {}
 // 🐨 create an Img component that renders a regular <img /> and accepts a src
 // prop and forwards on any remaining props.
 // 🐨 The first thing you do in this component is check whether your
 // imgSrcResourceCache already has a resource for the given src prop. If it does
 // not, then you need to create one (💰 using createResource).
 // 🐨 Once you have the resource, then render the <img />.
-function Img({src, alt, ...props}) {
-  let imgSrcResource = imgSrcResourceCache[src]
-  if (!imgSrcResource) {
-    imgSrcResource = createResource(preloadImage(src))
-    imgSrcResourceCache[src] = imgSrcResource
-  }
-  return <img src={imgSrcResource.read()} alt={alt} {...props} />
-}
+// function Img({src, alt, ...props}) {
+//   let imgSrcResource = imgSrcResourceCache[src]
+//   if (!imgSrcResource) {
+//     imgSrcResource = createResource(preloadImage(src))
+//     imgSrcResourceCache[src] = imgSrcResource
+//   }
+//   return <img src={imgSrcResource.read()} alt={alt} {...props} />
+// }
 // 💰 Here's what rendering the <img /> should look like:
 // <img src={imgSrcResource.read()} {...props} />
 
 function PokemonInfo({pokemonResource}) {
-  const pokemon = pokemonResource.read()
+  const pokemon = pokemonResource.data.read()
   return (
     <div>
       <div className="pokemon-info__img-wrapper">
-        {/* 🐨 swap this img for your new Img component */}
-        <Img src={pokemon.image} alt={pokemon.name} />
+        <img src={pokemonResource.image.read()} alt={pokemon.name} />
       </div>
       <PokemonDataView pokemon={pokemon} />
     </div>
@@ -77,7 +78,9 @@ function getPokemonResource(name) {
 }
 
 function createPokemonResource(pokemonName) {
-  return createResource(fetchPokemon(pokemonName))
+  const data = createResource(fetchPokemon(pokemonName))
+  const image = createResource(preloadImage(getImageUrlForPokemon(pokemonName)))
+  return {data, image}
 }
 
 function App() {
